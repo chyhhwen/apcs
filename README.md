@@ -8,3 +8,4 @@ CALL 打雜工\
 * week 第幾周
 * 因為換了compiler 
 * 所以後面的沒有*.exe
+* 預計加入 *.cpp
