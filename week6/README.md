@@ -1,7 +1,10 @@
 # 檔案與排序
 `檔案`\
 `FILE *fp;` 宣告檔案\
-`fopen("input.txt","r");` 讀取檔案\
+`fopen("input.txt","r");` 開啟檔案\
+`r` 讀取\
+`w` 寫入\
+`a` 新增\
 `fscanf(fp,"%d",&a);`檔案資料寫入變數\
 `fclose(fp);`關閉檔案
 ***
