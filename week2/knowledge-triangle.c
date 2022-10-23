@@ -5,7 +5,7 @@ int main()
 	int a,b,c,t;
 	float ab,cc;
 	
-	printf("¿é¤J¤TÃäªø: ¨Ò¦p:3 4 5\n");
+	printf("è¼¸å…¥ä¸‰é‚Šé•· å¦‚:3 4 5\n");
 	scanf(" %d %d %d",&a,&b,&c);
 	
 	if(a>b){t=a; a=b; b=t;}

@@ -6,7 +6,7 @@
 
 void filp(int A[X][Y],int row,int col)
 {
-    int B[X][Y];
+    int B[X][Y]={0};
     int i,j;
     for(i=1;i<=row;i++)
     {
@@ -26,11 +26,11 @@ void filp(int A[X][Y],int row,int col)
 
 void counterclockwise(int A[X][Y],int *row,int *col)
 {
-    int B[X][Y];
+    int B[X][Y]={0};
     int new_row=*col;
     int new_col=*row;
     int i,j;
-    for(i=1;i<new_row;i++)
+    for(i=1;i<=new_row;i++)
     {
         for(j=1;j<=new_col;j++)
         {
@@ -48,19 +48,19 @@ void counterclockwise(int A[X][Y],int *row,int *col)
     *col=new_col;
 }
 
-int main()
+int main(void)
 {
     int i,j;
     int row,col,m;
-    int A[X][Y];
+    int A[X][Y]={0};
     int operation[Z];
 
-    scanf("%d %d %d",&row,&col,&m);
+    scanf("%d%d%d",&row,&col,&m);
     for(i=1;i<=row;i++)
     {
         for(j=1;j<=col;j++)
         {
-            scanf("%d ",&A[i][j]);
+            scanf("%d",&A[i][j]);
         }
     }
     for(i=1;i<=m;i++)
