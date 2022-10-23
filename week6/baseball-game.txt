@@ -1,0 +1,30 @@
+棒球遊戲
+(1)安打：以 1B, 2B, 3B 和 HR 分別代表一壘打、二壘打、三壘打和全（四）壘打。
+(2) 出局：以 FO, GO, 和 SO 表示。
+
+範例一：輸入
+5 1B 1B FO GO 1B
+5 1B 2B FO FO SO
+4 SO HR SO 1B
+4 FO FO FO HR
+4 1B 1B 1B 1B
+4 GO GO 3B GO
+4 1B GO GO SO
+4 SO GO 2B 2B
+4 3B GO GO FO
+3
+範例一：正確輸出 
+0
+範例二：輸入
+5 1B 1B FO GO 1B
+5 1B 2B FO FO SO
+4 SO HR SO 1B
+4 FO FO FO HR
+4 1B 1B 1B 1B
+4 GO GO 3B GO
+4 1B GO GO SO
+4 SO GO 2B 2B
+4 3B GO GO FO
+6
+範例二：正確輸出
+5

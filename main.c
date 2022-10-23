@@ -1,56 +1,124 @@
 #include <stdio.h>
-typedef int bool;
-#define true 1
-#define false 0
+#include<string.h>
 
-int main(void)
+int main()
 {
     FILE *fp;
-    int N;
-    int M;
-    int X[20][20];
-    int biggest[20];
-    int i,j;
-    bool divisible;
-    int total=0;
-    fp= fopen("C:\\Users\\USER\\Desktop\\apcs\\week6\\input.txt","r");
-    fscanf(fp,"%d %d",&N,&M);
-    for(i=0;i<N;i++)
+    fp = fopen("C:\\Users\\USER\\Desktop\\apcs\\week6\\input1.txt","r");
+    int hit[100];
+    char str[2];
+    int base[3] = {0};
+    int i,j,k;
+    int a;
+    int b = 0;
+    int out = 0;
+    int score = 0;
+    int how_many = 0;
+    int current = 0;
+    for(i=0;i<9;++i)
     {
-        for(j=0;j<M;j++)
+        fscanf(fp," %d",&a);
+        for(j=0;j<a;j++)
         {
-            fscanf(fp,"%d",&X[i][j]);
-        }
-    }
-    for(i=0;i<N;i++)
-    {
-        biggest[i]=X[i][0];
-        for(j=0;j<M;j++)
-        {
-            if(X[i][j] > biggest[i])
+            fscanf(fp,"%s",str);
+            if(strcmp("FO",str) == 0 || strcmp("GO",str) == 0 || strcmp("SO",str) == 0)
             {
-                biggest[i] =  X[i][j];
+                hit[j*9+i] = 0;
+            }
+            else if(strcmp("1B",str) == 0)
+            {
+                hit[j*9+i] = 1;
+            }
+            else if(strcmp("2B",str) == 0)
+            {
+                hit[j*9+i] = 2;
+            }
+            else if(strcmp("3B",str) == 0)
+            {
+                hit[j*9+i] = 3;
+            }
+            else
+            {
+                hit[j*9+i] = 4;
             }
         }
     }
-    for(i=0;i<N;i++)
+    fscanf(fp,"%d",&b);
+    while(current < b)
     {
-        total = total+biggest[i];
-    }
-    printf("%d \n",total);
-    divisible = false;
-    for(i=0;i<N;i++)
-    {
-        if(total % biggest[i] == 0)
+        switch (hit[how_many])
         {
-            divisible = true;
-            printf("%d ",biggest[i]);
+            case  1:
+                if(base[2] == 1)
+                {
+                    score+=1;
+                }
+                base[2]=base[1];
+                base[1]=base[0];
+                base[0]=1;
+                break;
+            case  2:
+                if(base[2] == 1)
+                {
+                    score+=1;
+                }
+                if(base[1] == 1)
+                {
+                    score+=1;
+                }
+                base[2]=base[0];
+                base[0]=0;
+                base[1]=1;
+                break;
+            case  3:
+                if(base[2] == 1)
+                {
+                    score+=1;
+                }
+                if(base[1] == 1)
+                {
+                    score+=1;
+                }
+                if(base[0] == 1)
+                {
+                    score+=1;
+                }
+                base[1]=0;
+                base[0]=0;
+                base[2]=1;
+                break;
+            case  4:
+                if(base[2] == 1)
+                {
+                    score+=1;
+                }
+                if(base[1] == 1)
+                {
+                    score+=1;
+                }
+                if(base[0] == 1)
+                {
+                    score+=1;
+                }
+                score+=1;
+                base[0]=0;
+                base[1]=0;
+                base[2]=0;
+                break;
+            default:
+                out+=1;
+                if(out == 3)
+                {
+                    out = 0;
+                    base[0]=0;
+                    base[1]=0;
+                    base[2]=0;
+                }
+                current+=1;
+                break;
         }
+        how_many+=1;
+        printf("%d",score);
+        return 0;
     }
-    if(divisible == false)
-    {
-        printf("-1 \n");
-    }
-    fclose(fp);
-    return  0;
 }
