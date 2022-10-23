@@ -1,48 +1,43 @@
-#include <stdio.h>;
-const int unit[4][2]={{0,-1},{-1,0},{0,1},{1,0}};
+#include<stdio.h>
 
-int main()
+struct node
 {
-    int n;
-    int i,j;
-    int dir;
-    int row,col;
-    int step=1;
-    int dirindex=0;
-    int number=1;
-    scanf("%d",&n);
-    scanf("%d",&dir);
-    int data[n][n];
-    for(i=0;i<n;i++)
+    int data;
+    int next;
+};
+struct node player[200000];
+
+int main(void)
+{
+    int N;
+    int M;
+    int K;
+    int explosion = 0;
+    int i;
+    int num = 0;
+    int now = 0;
+    int previous = 0;
+    scanf("%d %d %d",&N,&M,&K);
+    for(i=0;i<N-1;i++)
     {
-        for(j=0;j<n;j++)
-        {
-            scanf("%d",&data[i][j]);
-        }
+        player[i].data = i+1;
+        player[i].next = i+1;
     }
-    row =(int)(n/2);
-    col =(int)(n/2);
-    printf("%d",data[row][col]);
-    while(number < n*n)
+    player[i-1].data = N;
+    player[i-1].next = 0;
+    while(explosion < K)
     {
-        for(i=0;i<step;i++)
+        num = num+1;
+        if(num == M)
         {
-            row += unit[dir][0];
-            col += unit[dir][1];
-            printf("%d",data[row][col]);
-            number++;
-            if(number == n*n)
-            {
-                break;
-            }
+            player[previous].next = player[now].next;
+            num = 0;
+            N = N-1;
+            explosion++;
         }
-        dirindex++;
-        if(dirindex %2 == 0)
-        {
-            step++;
-        }
-        dir++;
-        dir %= 4;
+        previous = now;
+        now = player[now].next;
     }
-    return  0;
+    printf("%d\n",player[now].data);
+    return 0;
 }
