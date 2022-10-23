@@ -1,42 +1,48 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdio.h>;
+const int unit[4][2]={{0,-1},{-1,0},{0,1},{1,0}};
 
-int main(void)
+int main()
 {
-    char str[1000];
-    int i;
-    int odd =0;
-    int even = 0;
-    scanf("%s",str);
-    if(strlen(str) % 2 ==0)
+    int n;
+    int i,j;
+    int dir;
+    int row,col;
+    int step=1;
+    int dirindex=0;
+    int number=1;
+    scanf("%d",&n);
+    scanf("%d",&dir);
+    int data[n][n];
+    for(i=0;i<n;i++)
     {
-        for(i=0;i<strlen(str);i++)
+        for(j=0;j<n;j++)
         {
-            if(i%2 == 0)
-            {
-                even += (int)(str[i])-48;
-            }
-            else
-            {
-                odd += (int)(str[i])-48;
-            }
+            scanf("%d",&data[i][j]);
         }
     }
-    else
+    row =(int)(n/2);
+    col =(int)(n/2);
+    printf("%d",data[row][col]);
+    while(number < n*n)
     {
-        for(i=0;i< strlen(str);i++)
+        for(i=0;i<step;i++)
         {
-            if(i%2 == 0)
+            row += unit[dir][0];
+            col += unit[dir][1];
+            printf("%d",data[row][col]);
+            number++;
+            if(number == n*n)
             {
-                odd += (int)(str[i])-48;
-            }
-            else
-            {
-                even += (int)(str[i])-48;
+                break;
             }
         }
+        dirindex++;
+        if(dirindex %2 == 0)
+        {
+            step++;
+        }
+        dir++;
+        dir %= 4;
     }
-    printf("%d\n",abs(even-odd));
-    return 0;
+    return  0;
 }
