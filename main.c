@@ -6,7 +6,7 @@ long ans(int n)
 {
     long total = 0;
     int i;
-    for(i=0;i<n;i++)
+    for(i=1;i<=n;i++)
     {
         total = total + height[i];
     }
@@ -20,7 +20,7 @@ int main(void)
     int Parent_node[100000]={0};
     int num_of_subnode[100000]={0};
     scanf("%d",&n);
-    for(i=0;i<n;i++)
+    for(i=1;i<=n;i++)
     {
         scanf("%d",&num_of_subnode[i]);
         for(j=0;j<num_of_subnode[i];j++)
@@ -29,23 +29,25 @@ int main(void)
             Parent_node[temp] = i;
         }
     }
-    for(i=1;i<n;i++)
+    for(i=1;i<=n;i++)
     {
         if(Parent_node[i] == 0)
         {
             printf("%d\n",i);
         }
     }
-    for(i=0;i<n;i++)
+    for(i=1;i<=n;i++)
     {
         if(num_of_subnode[i] == 0)
         {
+            int level = 0;
             int temp_node = Parent_node[i];
-            for(j=0;temp_node == 0;j++)
+            while(temp_node != 0)
             {
-                if(j > height[temp_node])
+                level++;
+                if(level > height[temp_node])
                 {
-                    height[temp_node] = j;
+                    height[temp_node] = level;
                 }
                 temp_node = Parent_node[temp_node];
             }
