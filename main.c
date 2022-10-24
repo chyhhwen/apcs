@@ -1,58 +1,44 @@
 #include <stdio.h>
-#include <stdlib.h>
-int height[100000]={0};
-
-long ans(int n)
-{
-    long total = 0;
-    int i;
-    for(i=1;i<=n;i++)
-    {
-        total = total + height[i];
-    }
-    return total;
-}
 
 int main(void)
 {
-    int n;
-    int temp,i,j;
-    int Parent_node[100000]={0};
-    int num_of_subnode[100000]={0};
-    scanf("%d",&n);
-    for(i=1;i<=n;i++)
+    struct item
     {
-        scanf("%d",&num_of_subnode[i]);
-        for(j=0;j<num_of_subnode[i];j++)
-        {
-            scanf("%d", &temp);
-            Parent_node[temp] = i;
-        }
+        int weight;
+        int timeing;
+    };
+    struct item tmp;
+    int min=0;
+    int weight=0;
+    int num;
+    int i,j;
+    scanf("%d",&num);
+    struct item obj[num];
+    for(i=0;i<num;i++)
+    {
+        scanf("%d",&obj[i].weight);
     }
-    for(i=1;i<=n;i++)
+    for(i=0;i<num-1;i++)
     {
-        if(Parent_node[i] == 0)
-        {
-            printf("%d\n",i);
-        }
+        scanf("%d",&obj[i].timeing);
     }
-    for(i=1;i<=n;i++)
+    for(i=0;i<num;i++)
     {
-        if(num_of_subnode[i] == 0)
+        for(j=0;j<num-i-1;j++)
         {
-            int level = 0;
-            int temp_node = Parent_node[i];
-            while(temp_node != 0)
+            if(obj[j].weight*obj[j+1].timeing > obj[j+1].weight*obj[j].timeing)
             {
-                level++;
-                if(level > height[temp_node])
-                {
-                    height[temp_node] = level;
-                }
-                temp_node = Parent_node[temp_node];
+                tmp = obj[j];
+                obj[j] = obj [j+1];
+                obj[j+1] =tmp;
             }
         }
     }
-    printf("%d",ans(n));
+    for(i=0;i<num-1;i++)
+    {
+        weight += obj[i].weight;
+        min += weight * obj[i+1].timeing;
+    }
+    printf("%d\n",min);
     return 0;
 }
