@@ -6,8 +6,8 @@
 struct a\
 {\
 `宣告成員`\
-int id;\
-char name[max];\
+&emsp;int id;\
+&emsp;char name[max];\
 }\
 `struct a obj;`宣告物件\
 `obj.id;`引用物件
