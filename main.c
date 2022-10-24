@@ -1,87 +1,56 @@
 #include <stdio.h>
-#include <math.h>
-#define true 1
-#define false 0
+#include <stdlib.h>
+int height[100000]={0};
 
-typedef int bool;
-
-int N;
-int K;
-int P[50000];
-
-void sort(int *a,int size)
+long ans(int n)
 {
-    int i,j;
-    int temp;
-    for(i=0;i<size-1;i++)
+    long total = 0;
+    int i;
+    for(i=0;i<n;i++)
     {
-        for(j=i+1;j<size;j++)
+        total = total + height[i];
+    }
+    return total;
+}
+
+int main(void)
+{
+    int n;
+    int temp,i,j;
+    int Parent_node[100000]={0};
+    int num_of_subnode[100000]={0};
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&num_of_subnode[i]);
+        for(j=0;j<num_of_subnode[i];j++)
         {
-            if(a[i] > a[j])
+            scanf("%d", &temp);
+            Parent_node[temp] = i;
+        }
+    }
+    for(i=1;i<n;i++)
+    {
+        if(Parent_node[i] == 0)
+        {
+            printf("%d\n",i);
+        }
+    }
+    for(i=0;i<n;i++)
+    {
+        if(num_of_subnode[i] == 0)
+        {
+            int temp_node = Parent_node[i];
+            for(j=0;temp_node == 0;j++)
             {
-                temp = a[i];
-                a[i] = a[j];
-                a[j] = temp;
+                if(j > height[temp_node])
+                {
+                    height[temp_node] = j;
+                }
+                temp_node = Parent_node[temp_node];
             }
         }
     }
-}
-
-bool check(int diameter)
-{
-    int coverage = 0;
-    int num = 0;
-    int index = 0;
-    int i;
-    for(i=0;i<N;i++)
-    {
-        coverage = P[index] + diameter;
-        num++;
-        if(num > K)
-        {
-            return false;
-        }
-        if((num <= K) && (P[N-1] <= coverage))
-        {
-            return true;
-        }
-        do
-        {
-            index++;
-        }
-        while(P[index] <= coverage);
-    }
-}
-
-int main()
-{
-    FILE *fp;
-    int left,right,med,i;
-    fp=fopen("C:\\Users\\USER\\Desktop\\apcs\\week6\\input3.txt","r");
-    fscanf(fp,"%d %d",&N,&K);
-    for(i=0;i<N;i++)
-    {
-        fscanf(fp,"%d",&P[i]);
-    }
-    sort(P,N);
-    left = 1;
-    right = floor((P[N-1]-P[0]) / K) + 1;
-    while(left <= right)
-    {
-        med = floor((left+right) / 2);
-        if(check(med)==true)
-        {
-            right = med;
-        }
-        else
-        {
-            left = med + 1;
-        }
-        if(left == right)
-        {
-            break;
-        }
-    }
-    printf("%d\n",med);
+    printf("%d",ans(n));
     return 0;
 }
