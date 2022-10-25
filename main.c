@@ -2,43 +2,26 @@
 
 int main(void)
 {
-    struct item
+    int n,d,pay,lastpay,ans;
+    scanf("%d %d",&n,&d);
+    ans=0;
+    lastpay=0;
+    for(int i=1;i<=n;i++)
     {
-        int weight;
-        int timeing;
-    };
-    struct item tmp;
-    int min=0;
-    int weight=0;
-    int num;
-    int i,j;
-    scanf("%d",&num);
-    struct item obj[num];
-    for(i=0;i<num;i++)
-    {
-        scanf("%d",&obj[i].weight);
-    }
-    for(i=0;i<num-1;i++)
-    {
-        scanf("%d",&obj[i].timeing);
-    }
-    for(i=0;i<num;i++)
-    {
-        for(j=0;j<num-i-1;j++)
+        scanf("%d",&pay);
+        if(i == 1 || lastpay == -1)
         {
-            if(obj[j].weight*obj[j+1].timeing > obj[j+1].weight*obj[j].timeing)
+            lastpay = pay;
+        }
+        else
+        {
+            if((pay - lastpay) == d)
             {
-                tmp = obj[j];
-                obj[j] = obj [j+1];
-                obj[j+1] =tmp;
+                ans += d;
+                lastpay = -1;
             }
         }
     }
-    for(i=0;i<num-1;i++)
-    {
-        weight += obj[i].weight;
-        min += weight * obj[i+1].timeing;
-    }
-    printf("%d\n",min);
+    printf("%d\n",ans);
     return 0;
 }
