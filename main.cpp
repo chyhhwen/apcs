@@ -1,6 +1,11 @@
-#include <iostream>
+#include "bits/stdc++.h"
+using namespace std;
+int fix()
+{
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
+}
+int main()
+{
+    fix();
     return 0;
 }
