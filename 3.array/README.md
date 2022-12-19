@@ -8,8 +8,8 @@
 `A` 代表 65\
 `a` 代表 97\
 `#include<ctype.h>`\
-`islower()` 判斷字母是否為小寫
-`issupper()` 判斷字母是否為大寫
+`islower()` 判斷字母是否為小寫\
+`issupper()` 判斷字母是否為大寫\
 `#include<string.h>`\
 `strlen()` 字串長度 包含`\0`
 
