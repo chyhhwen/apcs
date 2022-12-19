@@ -1,0 +1,31 @@
+# c++容器
+***
+### vector容器
+`#include<vector>` 引用標頭檔\
+`vector.begin()` 容器的開始\
+`vector.end()` 容器的尾端\
+`vector.push_back()` 加入值到容器尾端\
+`vector.pop_back()` 移除尾端的值\
+`vector.insert(,)` 新增值\
+`vector.clear()` 清空容器\
+`vector.erase()` 刪除值\
+`vector.capacity()` 容量大小\
+`vector.size()` 長度大小\
+`vector.reserve()` 預設大小\
+`vector.resize()` 重新指定大小\
+`vector.front()` 讀取第一個值\
+`vector.back()` 讀取最後一個值\
+`vector.empty()` 判斷容器是否為空\
+`vector.swap(vector1)` 容器互換
+***
+### map容器
+`#include<map>` 引用標頭檔\
+`map.begin()` 容器的開始\
+`map.end()` 容器的尾端\
+`map.insert(,)` 新增值\
+`map.erase()` 刪除值\
+`map.clear()` 清空容器\
+`map.size()` 長度大小\
+`map.count()` 指定元素出現次數\
+`map.empty()` 判斷容器是否為空\
+`map.find()` 查找元素
