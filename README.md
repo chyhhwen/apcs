@@ -7,4 +7,4 @@
 .txt 題目\
 因為換了compiler \
 所以後面的沒有*.exe\
-預計加入 *.cpp
+陸續加入 *.cpp
