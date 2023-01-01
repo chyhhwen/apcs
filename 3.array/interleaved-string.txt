@@ -15,7 +15,7 @@ aBBdaaa
 2
 aafAXbbCDCCC
 範例二:正確輸出
-3
+8
 
 範例三:輸入
 3
