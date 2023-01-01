@@ -1,37 +1,67 @@
 #include <bits/stdc++.h>
+#define max 1024
 using namespace std;
-void fix()
+bool judge(int a,int b)
 {
-    int n,trun;
-    cin >> n >> trun;
-    int num[n][n];
-
-    for(int i=0;i<n;i++)
+    if(a > 96)
     {
-        for(int j=0;j<n;j++)
+        if(b > 96)
         {
-            cin >> num[i][j];
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
-
-    int x=(n-1)/2,y=x;
-    cout << num[x][y];
-
-    for(int i=1;i<n;i++)
+    else
     {
-        for(int j=0;j<(i==n-1 ? 3 : 2);j++)
+        if(b < 96)
         {
-            for(int k=0;k<i;k++)
-            {
-                if(trun==0) x-=1;
-                else if(trun==1) y-=1;
-                else if(trun==2) x+=1;
-                else if(trun==3) y+=1;
-                cout << num[y][x];
-            }
-            trun++;
-            if(trun==4) trun=0;
+            return false;
         }
+        else
+        {
+            return true;
+        }
+    }
+}
+void fix()
+{
+    int k = 0;
+    int m = 0;
+    char put[max];
+    vector<int> check;
+    cin >> k;
+    cin >> put;
+    m = 0;
+    for(int i=0;i<strlen(put);i++)
+    {
+        if(i != 0)
+        {
+            if(judge(put[i],put[i-1]))
+            {
+                check.push_back(m);
+                m = 1;
+            }
+            else
+            {
+                m += 1;
+            }
+        }
+        else
+        {
+            m += 1;
+        }
+        if(i == (strlen(put) - 1))
+        {
+            check.push_back(m);
+            m = 1;
+        }
+    }
+    for(auto i = check.begin();i!=check.end();i++)
+    {
+        cout << *i << " ";
     }
 }
 int main()
