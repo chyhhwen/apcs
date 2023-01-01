@@ -80,21 +80,21 @@ void fix()
         }
     }
     int put = 0;
-   for(int i=0;i<size;i++)
-   {
-       cin >> put;
-       switch (put)
-       {
-           case 0:
-               swap(x,y);
-               trun();
-               break;
-           case 1:
+    for(int i=0;i<size;i++)
+    {
+        cin >> put;
+        switch (put)
+        {
+            case 0:
+                swap(x,y);
+                trun();
+                break;
+            case 1:
                 updown();
-               break;
-       }
-   }
-  printans();
+                break;
+        }
+    }
+    printans();
 }
 int main()
 {
